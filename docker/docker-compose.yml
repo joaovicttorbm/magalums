@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  mysql:
+    container_name: "mysql-magalu"
+    image: "mysql:8.0"
+    environment:
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_USER=${MYSQL_USER}
+    ports:
+      - "3306:3306" # Porta exposta (remova se não for necessário acesso externo)
+    volumes:
+      - "mysql_data:/var/lib/mysql"
+    networks:
+      - magalu_net
+
+volumes:
+  mysql_data: # Volume para persistência de dados do MySQL
+
+networks:
+  magalu_net: # Rede personalizada para os serviços do projeto
