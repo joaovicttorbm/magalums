@@ -2,6 +2,7 @@ package com.tech.magalums.config;
 
 import java.util.Arrays;
 
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
 import com.tech.magalums.entity.Channel;
@@ -12,7 +13,7 @@ import com.tech.magalums.repository.StatusRepository;
 import jakarta.transaction.Transactional;
 
 @Configuration
-public class InitialDataLoader {
+public class InitialDataLoader implements CommandLineRunner {
 
     private final ChannelRepository channelRepository;
     private final StatusRepository statusRepository;
@@ -22,6 +23,7 @@ public class InitialDataLoader {
         this.statusRepository = statusRepository;
     }
 
+    @Override
     @Transactional
     public void run(String... args) throws Exception {
         loadChannels();
